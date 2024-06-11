@@ -57,4 +57,4 @@ from base_cleaned ;
 -- light QA 
 select receipt_id from stg_receipts group by receipt_id having count(*) > 1; -- none, ID is unique here
 
-select * from stg_brands order by brand_id; 
+select * from stg_receipts order by receipt_id limit 10; 
