@@ -124,3 +124,12 @@ select
     receipt_item_deleted
 from base_cleaned
 );
+
+-- light QA 
+
+select unique_key from stg_rewards_receipt_item_list group by unique_key having count(*) > 1; -- none, ID is unique here
+
+select count(*) row_count, count(distinct receipt_id) receipt_count from stg_rewards_receipt_item_list; 
+-- 6,941 items on 679 receipts
+
+select * from stg_rewards_receipt_item_list order by receipt_id, receipt_item_list_index limit 100;
