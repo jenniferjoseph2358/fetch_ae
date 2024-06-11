@@ -52,4 +52,24 @@ order by 1,2;
 
 -- #3: Receipts 
 
+select count(*) from receipts; -- 1119
+select * from receipts limit 10; 
+
+with flattened_json as (
+    select 
+        f.key as nested_key,
+        case
+            when is_object(f.value) then 'nested_json_object'
+            when is_array(f.value) then 'nested_json_array'
+        else 'primitive_value' end as value_type
+    from receipts r,
+        lateral flatten(input => parse_json(r.json)) as f
+)
+select 
+    distinct a.nested_key, a.value_type
+from flattened_json a
+order by 1,2;
+ 
+-- NEW VALUE TYPE --> rewardsReceiptItemList needs to be flattened as well 
+
 -- Bonus #4: Receipt Item List 
