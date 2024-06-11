@@ -5,7 +5,7 @@ This part of the exercise should show off how you communicate and reason about d
 Hey team! After ingesting, investigating, transforming, and analyzing the new users, brands, and receipts datasets, I am happy to share the following update. 
 
 What Has Been Built (The Pros):
-- We now have data on 1119 receipts and their 6941 receipt items, 204 consumers, and 1167 brands. These datasets are packed with valuable datapoints such as 
+- We now have data on 1119 receipts, 6941 receipt items, 204 consumers, and 1167 brands. These datasets are packed with valuable datapoints such as 
   - For Users: When their most recent app login was, when they were created as users, and their sign up source 
   - For Brands: Brand name, category, and if they are featured as a top brand
   - For Reciepts: The status of the receipt, the receipt's total spend and total points, and timestamps for when the receipt was created, processed, and awarded points
