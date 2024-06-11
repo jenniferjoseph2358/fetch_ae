@@ -27,6 +27,29 @@ order by 1,2;
 
 -- #2: Brands 
 
+--- Area of Improvement:
+-- Can we loop again by having a "source table" where we can input user / brand / receipts instead? or create a macro to do this flattening? 
+
+select count(*) from brands; -- 1,167
+select * from brands limit 10; 
+
+with flattened_json as (
+    select 
+        f.key as nested_key,
+        case
+            when is_object(f.value) then 'nested_json_object'
+            when is_array(f.value) then 'nested_json_array'
+        else 'primitive_value' end as value_type
+    from brands r,
+        lateral flatten(input => parse_json(r.json)) as f
+)
+select 
+    distinct a.nested_key, a.value_type
+from flattened_json a
+order by 1,2;
+ 
+-- -- will need to unpack the id again, and also cpg
+
 -- #3: Receipts 
 
 -- Bonus #4: Receipt Item List 
