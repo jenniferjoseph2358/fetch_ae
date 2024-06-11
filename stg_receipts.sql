@@ -53,3 +53,8 @@ with base as (
     receipt_rewards_status, 
     receipt_total_amount_spent
 from base_cleaned ;
+
+-- light QA 
+select receipt_id from stg_receipts group by receipt_id having count(*) > 1; -- none, ID is unique here
+
+select * from stg_brands order by brand_id; 
