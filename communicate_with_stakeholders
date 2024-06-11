@@ -4,26 +4,20 @@ This part of the exercise should show off how you communicate and reason about d
 
 Hey team! After ingesting, investigating, transforming, and analyzing the new users, brands, and receipts datasets, I am happy to share the following update. 
 
-What Has Been Built:
-- We now have data on more than XX receipts and YYY receipt items, from AAA consumers. These datasets are packed with valuable datapoints such as 
-  - For Users:
-  - For Brands:
-  - For Recipts:
-Raw Data Concerns:
-- (What questions do you have about the data?)
-- (How did you discover the data quality issues?) 
-- What do you need to know to resolve the data quality issues?
-
-
-- 
-Preliminary Business Questions:
-- Without having the answers to the above, I have built the pipeline for answering a handful of questions I'd be happy to further discuss! 
-- 
+What Has Been Built (The Pros):
+- We now have data on 1119 receipts and their 6941 receipt items, 204 consumers, and 1167 brands. These datasets are packed with valuable datapoints such as 
+  - For Users: When their most recent app login was, when they were created as users, and their sign up source 
+  - For Brands: Brand name, category, and if they are featured as a top brand
+  - For Reciepts: The status of the receipt, the receipt's total spend and total points, and timestamps for when the receipt was created, processed, and awarded points
+  - For Reciept Items: Description, pricing information, quantity, and barcode information
+Raw Data Concerns (The Cons):
+- While confident in the structures of these data models, I have questions regarding the quality of data and potenital relationships between them 
+  - For matching Receipt data to Brands:  When using the one shared combination of keys I identified between thse datasets, there is only a 1% match success rate. This means any brand performance analysis will be on a <100 receipt record subset. 
+  - For Users: I have built this table so that the user_id is unique, but the raw data source has duplicates. Is there a potential data capture issue to address upstream? 
+  - For Receipts and Items: Various fields have high volume of null values - I will need to validate this behavior with the team to better contextualize when this is expected and when it requires further digging. 
+  - These concerns boil down to reviewing a) the expected behavior and intent behind a handful of data points and b) the expected relationship between these data entities 
 Next Steps: 
 - With additional data collaboration, we will finalize the base models mentioned above and document how each dataset can be joined together for future analaytic insights. 
-- 
-Additional Notes: 
-What other information would you need to help you optimize the data assets you're trying to create?
-What performance and scaling concerns do you anticipate in production and how do you plan to address them?
+- Down the line, we may have scaling concerns with the number of receipt items growing, but for now I believe we can trim these models down to a maintable size based on which fields can be used to drive decisions making. 
 
-
+Please let me know if you have further questions or concerns here, and I look forward to building out the next iteration! 
